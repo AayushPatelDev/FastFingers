@@ -2,25 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.html",
+      "src": "app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "static/**/*",
       "use": "@vercel/static"
     },
     {
-      "src": "static/*",
+      "src": "templates/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "index.html"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "src": "/(.*)",
+      "dest": "app.py"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
