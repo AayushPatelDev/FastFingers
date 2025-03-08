@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body onload="initializeTest()">
+    <div class="container">
+        <header>
+            <h1>FastFingers</h1>
+            <p class="tagline">Test your typing speed and accuracy</p>
+        </header>
+
+        <div class="test-area">
+            <div class="test-header">
+                <div class="timer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span id="time-left">60</span> seconds
+                </div>
+                <div class="wpm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19"/><path d="M5 5l14 14"/></svg>
+                    <span id="wpm">0</span> WPM
+                </div>
+            </div>
+
+            <!-- Replace word-container with our typing area that contains both words and cursor -->
+            <div class="typing-area" id="typing-area" tabindex="0">
+                <div id="word-container" class="word-display"></div>
+                <!-- This hidden input will capture keystrokes -->
+                <input type="text" id="hidden-input" style="opacity: 0; position: absolute; top: -9999px; left: -9999px;">
+            </div>
+
+            <p class="instruction-text">Click anywhere or press any key to start typing</p>
+
+            <button id="restart-button" onclick="restartTest()" style="display: none;">
+                <span class="button-text">Restart Test</span>
+                <span class="button-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 2v6h6M21.5 22v-6h-6"/><path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2"/></svg>
+                </span>
+            </button>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <h2>Your Results</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="final-wpm">0</span>
+                    <span class="stat-label">Words Per Minute</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="accuracy">0%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+            </div>
+            <button id="retry-button" onclick="resetTest()">Try Again</button>
+        </div>
+
+        <footer>
+            <p>Improve your typing skills with daily practice</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
